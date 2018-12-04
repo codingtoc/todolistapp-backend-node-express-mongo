@@ -2,6 +2,8 @@
 const express = require("express");
 // 라우터 생성하기
 const router = express.Router();
+// 할일 모델 가져오기
+const Todo = require("../models/todo");
 
 // DB에서 할일 목록 가져오기
 router.get("/todos", (req, res) => {
@@ -9,10 +11,10 @@ router.get("/todos", (req, res) => {
 });
 // DB에 신규 할일 추가하기
 router.post("/todos", (req, res) => {
-  // req.body 값 콘솔로 확인하기
-  console.log(req.body);
-  // req.body 이용하여 응답하기
-  res.send({ type: "POST", todo: req.body.todo, done: req.body.done });
+  // MongoDB에 신규 할일 추가하기
+  Todo.create(req.body).then(todo => {
+    res.send(todo);
+  });
 });
 // DB에서 기존 할일 수정하기
 router.put("/todos/:id", (req, res) => {
