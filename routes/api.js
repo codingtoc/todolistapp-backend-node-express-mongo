@@ -9,6 +9,8 @@ router.get("/todos", (req, res) => {
 });
 // DB에 신규 할일 추가하기
 router.post("/todos", (req, res) => {
+  // req.body 값 콘솔로 확인하기
+  console.log(req.body);
   res.send({ type: "POST" });
 });
 // DB에서 기존 할일 수정하기
