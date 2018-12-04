@@ -6,6 +6,9 @@ const routes = require("./routes/api");
 // express app 생성하기
 const app = express();
 
+// application/json 타입의 body를 파싱하기 위한 미들웨어 등록
+app.use(express.json());
+
 // 라우트 초기화
 app.use("/api", routes);
 
