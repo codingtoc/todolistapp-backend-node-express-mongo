@@ -24,8 +24,8 @@ app.use("/api", routes);
 
 // 에러 핸들링 미들웨어 등록
 app.use((err, req, res, next) => {
-  // 콘솔로 err 객체 확인하기
-  console.log(err);
+  // 상태코드 및 에러 메시지 응답하기
+  res.status(422).send({ error: err._message });
 });
 
 // 4000번 포트에서 요청 리스닝 하기
