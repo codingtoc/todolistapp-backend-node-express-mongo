@@ -22,6 +22,12 @@ app.use(express.json());
 // 라우트 초기화
 app.use("/api", routes);
 
+// 에러 핸들링 미들웨어 등록
+app.use((err, req, res, next) => {
+  // 콘솔로 err 객체 확인하기
+  console.log(err);
+});
+
 // 4000번 포트에서 요청 리스닝 하기
 app.listen(4000, () => {
   console.log("now listening for requests : 4000 PORT");
