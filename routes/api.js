@@ -11,7 +11,8 @@ router.get("/todos", (req, res) => {
 router.post("/todos", (req, res) => {
   // req.body 값 콘솔로 확인하기
   console.log(req.body);
-  res.send({ type: "POST" });
+  // req.body 이용하여 응답하기
+  res.send({ type: "POST", todo: req.body.todo, done: req.body.done });
 });
 // DB에서 기존 할일 수정하기
 router.put("/todos/:id", (req, res) => {
