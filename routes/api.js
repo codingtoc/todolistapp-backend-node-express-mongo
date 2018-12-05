@@ -7,7 +7,11 @@ const Todo = require("../models/todo");
 
 // DB에서 할일 목록 가져오기
 router.get("/todos", (req, res, next) => {
-  res.send({ type: "GET" });
+  Todo.find({})
+    .then(todos => {
+      res.send(todos);
+    })
+    .catch(next);
 });
 // DB에 신규 할일 추가하기
 router.post("/todos", (req, res, next) => {
