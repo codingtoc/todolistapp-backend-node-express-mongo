@@ -15,6 +15,8 @@ mongoose.connect(
 );
 // mongoose의 기본 Promise(mPromise)를 node의 Promise로 교체
 mongoose.Promise = global.Promise;
+// findOneAndUpate 사용을 위해 deprecation 경고 해결하기
+mongoose.set("useFindAndModify", false);
 
 // application/json 타입의 body를 파싱하기 위한 미들웨어 등록
 app.use(express.json());
