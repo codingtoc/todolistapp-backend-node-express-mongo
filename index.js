@@ -4,9 +4,14 @@ const express = require("express");
 const routes = require("./routes/api");
 // mongoose 모듈 가져오기
 const mongoose = require("mongoose");
+// cors 모듈 가져오기
+const cors = require("cors");
 
 // express app 생성하기
 const app = express();
+
+// CORS(Cross Origin Resource Sharing) 미들웨어 등록
+app.use(cors());
 
 // MongoDB에 연결하기
 mongoose.connect(
