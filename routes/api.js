@@ -24,7 +24,12 @@ router.put("/todos/:id", (req, res, next) => {
 });
 // DB에서 기존 할일 삭제하기
 router.delete("/todos/:id", (req, res, next) => {
-  res.send({ type: "DELETE" });
+  // MongoDB에서 기존 할일 삭제하기
+  Todo.findOneAndDelete({ _id: req.params.id })
+    .then(todo => {
+      res.send(todo);
+    })
+    .catch(next);
 });
 
 module.exports = router;
