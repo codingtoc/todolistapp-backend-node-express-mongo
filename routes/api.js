@@ -20,7 +20,14 @@ router.post("/todos", (req, res, next) => {
 });
 // DB에서 기존 할일 수정하기
 router.put("/todos/:id", (req, res, next) => {
-  res.send({ type: "PUT" });
+  // MongoDB에서 기존 할일 수정하기
+  Todo.findOneAndUpdate({ _id: req.params.id }, req.body)
+    .then(() => {
+      Todo.findOne({ _id: req.params.id }).then(todo => {
+        res.send(todo);
+      });
+    })
+    .catch(next);
 });
 // DB에서 기존 할일 삭제하기
 router.delete("/todos/:id", (req, res, next) => {
